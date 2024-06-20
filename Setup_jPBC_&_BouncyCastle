@@ -1,0 +1,75 @@
+// This is to tell how to setup jPBC (for bilinear pairing based operation) and BouncyCastle (for HKDF function and encryption and decryption)
+
+- For jPBC
+
+Download the JAR Files:
+
+STEP 1: Go to the JPBC download page and download the jpbc-api-2.0.0.jar and jpbc-plaf-2.0.0.jar files.
+
+STEP 2: Install JARs Locally: Open a terminal and run the following commands to install the JARs into your local Maven repository and write this code:
+
+............ mvn install:install-file -Dfile=path/to/jpbc-api-2.0.0.jar -DgroupId=it.unisa.dia.gas -DartifactId=jpbc-api -Dversion=2.0.0 -Dpackaging=jar
+............ mvn install:install-file -Dfile=path/to/jpbc-plaf-2.0.0.jar -DgroupId=it.unisa.dia.gas -DartifactId=jpbc-plaf -Dversion=2.0.0 -Dpackaging=jar
+
+Replace path/to with the actual path where the JAR files are located.
+
+STEP 3: Add these dependencies in pom.xml (Maven)
+
+    <dependencies>
+        <dependency>
+            <groupId>it.unisa.dia.gas</groupId>
+            <artifactId>jpbc-api</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>it.unisa.dia.gas</groupId>
+            <artifactId>jpbc-plaf</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+    </dependencies>
+    
+    
+click on reload all maven souces in the right panel
+
+- For BouncyCastel Library
+
+STEP 1: Add this repository after properties tag :
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+    
+
+STEP 2: Add these dependencies in pom.xml file like this:
+
+    <dependencies>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.70</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk15on</artifactId>
+            <version>1.70</version>
+        </dependency>
+        <dependency>
+            <groupId>it.unisa.dia.gas</groupId>
+            <artifactId>jpbc-api</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>it.unisa.dia.gas</groupId>
+            <artifactId>jpbc-plaf</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+    </dependencies>
+    
+    
+    then again reload all maven sources
+    
+    That's it
